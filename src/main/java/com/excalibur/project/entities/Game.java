@@ -1,4 +1,4 @@
-package com.ember.project.entities;
+package com.excalibur.project.entities;
 
 import java.util.Objects;
 
