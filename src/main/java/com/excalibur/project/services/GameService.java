@@ -3,6 +3,7 @@ package com.excalibur.project.services;
 import com.excalibur.project.dto.GameDTO;
 import com.excalibur.project.dto.GameMinDTO;
 import com.excalibur.project.entities.Game;
+import com.excalibur.project.projections.GameMinProjection;
 import com.excalibur.project.repositories.GameRepository;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,4 +31,9 @@ public class GameService {
         return result.stream().map(GameMinDTO::new).toList();
     }
 
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByGameList(Long listId) {
+        List<GameMinProjection> games = gameRepository.searchByList(listId);
+        return games.stream().map(GameMinDTO::new).toList();
+    }
 }
